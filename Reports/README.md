@@ -1,31 +1,32 @@
 Testing Report for Stabilizer Bot
 
-Introduction
+# Introduction
 The stabilizer bot is designed to maintain the price stability of a token by pegging it to a stable coin. The bot uses a mint/burn algorithm to maintain the price stability. In this testing report, we will test the functionality of the bot and ensure that it is working as expected.
-Test Environment
+# Test Environment
 •	Remix IDE
 •	Programming Language: JavaScript
 •	Development Framework: Hardhat
 •	Smart Contract Platform: EthereumHardhat Localhost
 •	Network :- LocalHost
-Test Cases
-Test Case 1: Deploying Contract with Initial Supply of 100 Tokens and Transferring 100 USDT should produce price of 1 USDT
+# Test Cases
+## Test Case 1: Deploying Contract with Initial Supply of 100 Tokens and Transferring 100 USDT should produce price of 1 USDT
 •	Input: USDT Reserve = 100 USDT, Current token supply = 100 tokens
 •	Output: Price of the token = 1 USDT
 •	RESULT : PASS
 
-Test Case 2: Mint 2 token to stimulate Low Demand Bot should Burn Tokens until price is at threshold 
+## Test Case 2: Mint 2 token to stimulate Low Demand Bot should Burn Tokens until price is at threshold 
 •	Input: Price of the token = 1 USDT, Threshold = 0.01, Current token supply = 102 tokens
 •	Output: Burn 2 tokens and price of stablecoin is 0.998USDT and will transfer required USDT to make it 1USDT again from reserve wallet to contract
 •	RESULT : PASS
 
-Test Case 3: Transfer 1 USDT to contract to stimulate High Demand Bot should Burn tokens to stabilize exceeding price
+## Test Case 3: Transfer 1 USDT to contract to stimulate High Demand Bot should Burn tokens to stabilize exceeding price
 •	Input: Price of the token = 1 USDT, Current token supply = 100 tokens 101 USDT in reserves
 •	Output: Burn 1 tokens and transfer required USDT from the contract to reserved wallet RESULT : PASS
-Test Case 4: Price depreciates due to increase in USDT reserves in smart contract BOT should mint tokens adjustments to stabilize the price by equalizing supply and reserves
+
+## Test Case 4: Price depreciates due to increase in USDT reserves in smart contract BOT should mint tokens adjustments to stabilize the price by equalizing supply and reserves
 •	RESULT : PASS
 
-Test Case 5: Do not mint/burn tokens when the price is within the threshold
+## Test Case 5: Do not mint/burn tokens when the price is within the threshold
 •	Input: Price of the token = 0.99 USDT, Threshold price = 1 USDT, Current token supply = 99 tokens USDT reserves 99 USDT
 •	Output: Do not mint or burn tokens 
 •	RESULT : PASS
