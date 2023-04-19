@@ -61,7 +61,7 @@ graph TD
 <br>
 
 
-# Run Bot (in GATOCHAIN)
+# Run Bot 
 ```diff
 - @@ Make Sure Stablecoin have some USDT in them before initializing Bot AND owner account have USDT in its wallet @@
 
