@@ -36,13 +36,27 @@ The stabilizer bot is designed to maintain the price stability of a token by peg
 Conclusion
 The stabilizer bot was successfully tested and all test cases passed. The bot was able to maintain the price stability of the token by pegging it to a stable coin. The mint/burn algorithm was effective in controlling the token supply and maintaining the price stability.
 
-Scripts:
+# Steps To Run Tests Bot with following Command on cmd
 
-To Run Tests:
-npx harhat node
-npx hardhat test test/TestBot.js --network localhost
-
+## 1. Initialize localnet
+    npx hardhat node
+   
+## 2. Run Tests
+    npx hardhat test test/BotTest.js --network localhost   
+## 3.Results
+```diff
++4 passing
 ```
+
+
+<br>
+<br>
+
+# Scripts
+
+
+
+```javascript
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const Web3 = require('web3');
