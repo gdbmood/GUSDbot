@@ -18,24 +18,17 @@ contract Stablecoin is ERC20 {
 
     function mint(uint256 amount) external {
         require(amount > 0, "Amount must be greater than zero");
-        uint256 usdtBalance = IERC20(usdtAddress).balanceOf(address(this));
-        uint256 totalSupply = totalSupply();
-        uint256 newTotalSupply = totalSupply + amount;
-        uint256 newUsdtBalance = (usdtBalance*10 ** decimals()) * newTotalSupply / totalSupply;
         IERC20 usdt = IERC20(usdtAddress);
-        require(usdt.transferFrom(msg.sender, address(this), newUsdtBalance - usdtBalance), "Transfer failed");
+     
+         usdt.transferFrom(msg.sender, address(this), (amount / (1*10 ** decimals())));
         _mint(msg.sender, amount);
     }
 
     function burn(uint256 amount) external {
         require(amount > 0, "Amount must be greater than zero");
-          uint256 usdtBalance = IERC20(usdtAddress).balanceOf(address(this));
-        uint256 totalSupply = totalSupply();
-        uint256 newTotalSupply = totalSupply - amount;
-        uint256 newUsdtBalance = usdtBalance * newTotalSupply / totalSupply;
-        _burn(msg.sender, amount);
+
         IERC20 usdt = IERC20(usdtAddress);
-        require(usdt.transfer(msg.sender, usdtBalance - newUsdtBalance), "Transfer failed");
+        require(usdt.transfer(msg.sender, amount / 10 ** decimals()), "Transfer failed");
     }
         function burnAdjust(uint256 amount) external {
         require(amount > 0, "Amount must be greater than zero");
