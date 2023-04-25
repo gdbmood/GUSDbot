@@ -11,7 +11,7 @@ describe("StabilizerBot", function () {
   
     before(async () => {
       [owner, add] = await ethers.getSigners();
-        console.log(owner);
+        console.log("owner",owner.address);
         const USDT = await ethers.getContractFactory("MockUSDT");
         usdtContract = await USDT.deploy();
         await usdtContract.deployed();
