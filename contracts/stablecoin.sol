@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract Stablecoin is ERC20 {
     address public usdtAddress;
 
-    constructor( uint256 initialSupply_, address usdtAddress_) ERC20("stn","STB") {
+    constructor( uint256 initialSupply_, address usdtAddress_) ERC20("gusdt","GUsd") {
         _mint(msg.sender, initialSupply_ * 10 ** decimals());
         usdtAddress = usdtAddress_;
     }
@@ -20,7 +20,7 @@ contract Stablecoin is ERC20 {
         require(amount > 0, "Amount must be greater than zero");
         IERC20 usdt = IERC20(usdtAddress);
      
-         usdt.transferFrom(msg.sender, address(this), (amount / (1*10 ** decimals())));
+         usdt.transferFrom(msg.sender, address(this), (amount / (10 ** decimals())));
         _mint(msg.sender, amount);
     }
 
@@ -29,11 +29,12 @@ contract Stablecoin is ERC20 {
 
         IERC20 usdt = IERC20(usdtAddress);
         require(usdt.transfer(msg.sender, amount / 10 ** decimals()), "Transfer failed");
+         _burn(msg.sender, amount);
     }
         function burnAdjust(uint256 amount) external {
         require(amount > 0, "Amount must be greater than zero");
         _burn(address(this), amount);
-
+        
     }
         function mintAdjust(uint256 amount) external {
         require(amount > 0, "Amount must be greater than zero");
