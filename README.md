@@ -1,4 +1,4 @@
-# Stablecoin By Abuzar Khan
+# Stablecoin By Mood Global Services B.V. for Gatochain Foundation
 
 <br> 
 <div align="center">
